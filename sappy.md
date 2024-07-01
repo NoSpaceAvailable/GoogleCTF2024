@@ -263,7 +263,7 @@
    
 - Tổng kết lại, flow của webapp như sau:
   - Trang web có các nút hiện JS fact, khi truy cập trang web thì một iframe có src là "sap.html" được tạo ra, đồng thời một message với method là initialize được postMessage() gửi đến iframe
-  - Khi click vào 1 nút thì message với method render được gửi đến iframe, sau khi xử lí xong thì iframe trả về message cho cửa sổ cha nhằm upđate chiều cao cho chính nó
+  - Khi click vào 1 nút thì message với method render được gửi đến iframe, sau khi xử lí xong thì iframe trả về message cho cửa sổ cha nhằm update chiều cao cho chính nó
   - Data của các fact được lấy từ https://sappy-web.2024.ctfcompetition.com/sap/<page>
    
 - Nhìn qua thì trang web này có vẻ không có chỗ để ném payload XSS thông thường vào, tuy nhiên sau khi đọc code thật kỹ thì mình nhận thấy logic trang web khá sus:
@@ -382,7 +382,7 @@
       console.log(`Listening on localhost:${1337}`);
   });
   ```
-- Lưu ý nếu không set CORS header *Access-Control-Allow-Origin* thành "*" thì không thể thực hiện fetch() đến attacker server được (bị chặn lại)
+- Lưu ý nếu không set header *Access-Control-Allow-Origin* thành "*" thì ta không thể đọc được response khi thực hiện fetch() đến attacker server do bị SOP chặn lại
 
   ![image](https://github.com/NoSpaceAvailable/GoogleCTF2024/assets/143888307/f73cf2c8-b7fd-4f34-a37f-bdc40f65b7b6)
 
@@ -391,7 +391,7 @@
 
 - Kiến thức học được:
   - DOM-based XSS thông qua postMessage()
-  - Nếu không cần fetch message từ site khác thì đừng dùng thêm event listener lên sự kiện "message"
+  - Nếu không cần fetch message từ site khác thì hạn chế dùng thêm event listener lên sự kiện "message"
   - Tham số targetOrigin của postMessage() không nên để là "*"
   - Dùng schema *data* có thể hữu ích trong một số trường hợp
   - CORS header: Access-Control-Allow-Origin
