@@ -395,3 +395,4 @@
   - Tham số targetOrigin của postMessage() không nên để là "*"
   - Dùng schema *data* có thể hữu ích trong một số trường hợp
   - CORS header: Access-Control-Allow-Origin
+  - goog.Uri.parse() thực hiện parse URI bằng regex nhưng không giới hạn về schema
